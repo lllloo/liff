@@ -28,15 +28,27 @@ liff
   })
 </script>
 <template>
-  <div>
-    <div>Liff - {{ LIFF_ID }}</div>
-    <div>
-      {{ decodedIDToken.name }}
+  <div class="w-full h-full flex flex-col">
+    <div class="flex-1 overflow-auto">
+      <div>Liff - {{ decodedIDToken.name }}</div>
+      <NuxtLink to="/" class="mr-2"> index </NuxtLink>
+      <NuxtLink to="/list"> list </NuxtLink>
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
     </div>
-    <NuxtLink to="/" class="mr-2"> index </NuxtLink>
-    <NuxtLink to="/list"> list </NuxtLink>
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
+    <div class="flex justify-between p-2 bg-gray-100">
+      <div></div>
+      <button class="rounded bg-primary px-2 py-1 font-semibold text-white">
+        Button
+      </button>
+    </div>
   </div>
 </template>
+<style>
+html,
+body,
+#__nuxt {
+  height: 100%;
+}
+</style>
