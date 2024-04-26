@@ -30,7 +30,10 @@ jobs:
             ${{ runner.os }}-node-
 
       - run: npm ci
-      - run: npx nuxi generate
+      - name: Build
+        run: npx nuxi generate
+        env:
+          LIFF_ID: ${{ secrets.LIFF_ID }}
 
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
