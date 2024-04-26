@@ -5,5 +5,10 @@ export default defineNuxtConfig({
   app: {
     baseURL: process.env.NODE_ENV === 'production' ? '/liff/' : '/',
     buildAssetsDir: '/static/'
+  },
+  runtimeConfig: {
+    public: {
+      LIFF_ID: process.env.LIFF_ID,
+    }
   }
 })
