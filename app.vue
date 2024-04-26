@@ -15,8 +15,7 @@ liff
     console.log('liff.init() done')
 
     const idToken = liff.getDecodedIDToken()
-    decodedIDToken.name = idToken.name
-    console.log(idToken)
+    decodedIDToken.name = idToken?.name || undefined
   })
   .catch((error) => {
     console.log(`liff.init() failed: ${error}`)
@@ -29,11 +28,15 @@ liff
   })
 </script>
 <template>
-  <div>Liff</div>
   <div>
-    {{ LIFF_ID }}
-  </div>
-  <div>
-    {{ decodedIDToken.name }}
+    <div>Liff - {{ LIFF_ID }}</div>
+    <div>
+      {{ decodedIDToken.name }}
+    </div>
+    <NuxtLink to="/" style="margin-right: 10px;"> index </NuxtLink>
+    <NuxtLink to="/list"> list </NuxtLink>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>
