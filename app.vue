@@ -33,7 +33,7 @@ liff
     <div>
       {{ decodedIDToken.name }}
     </div>
-    <NuxtLink to="/" style="margin-right: 10px;"> index </NuxtLink>
+    <NuxtLink to="/" class="mr-2"> index </NuxtLink>
     <NuxtLink to="/list"> list </NuxtLink>
     <NuxtLayout>
       <NuxtPage />
