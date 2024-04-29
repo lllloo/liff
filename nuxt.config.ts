@@ -13,7 +13,14 @@ export default defineNuxtConfig({
           content: 'width=device-width, initial-scale=1.0',
         },
         { name: 'description', content: 'This is LIFF App' }
-      ]
+      ],
+      script: [
+        {
+          src: '//unpkg.com/vconsole@latest/dist/vconsole.min.js',
+          type: 'text/javascript',
+        },
+        { innerHTML: 'new VConsole()' },
+      ],
     }
   },
   runtimeConfig: {
