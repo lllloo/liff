@@ -8,10 +8,14 @@ const decodedIDToken = reactive({
 })
 const route = useRoute()
 
+const pid = useCookie('pid')
+if (route.query?.pid) {
+  pid.value = route.query?.pid
+}
+
 liff
   .init({
-    liffId: LIFF_ID,
-    redirectUri: `${window.location.href}?title=${route?.query?.title}&login=true`
+    liffId: LIFF_ID
   })
   .then(() => {
     console.log('liff.init() done')
@@ -46,17 +50,17 @@ const sendMessage = () => {
       console.error(error)
     })
 }
-
-if (route?.query?.title) {
-  useHead({
-    title: route.query.title
-  })
-}
 </script>
 <template>
   <div class="w-full h-full flex flex-col">
     <div class="flex-1 overflow-auto">
       <div>Liff - {{ decodedIDToken.name }}</div>
+      <div class="mb-2">
+        {{ route.query }}
+      </div>
+      <div>
+        cookie - {{ pid }}
+      </div>
       <NuxtLink to="/" class="mr-2"> index </NuxtLink>
       <NuxtLink to="/list"> list </NuxtLink>
       <NuxtLayout>
