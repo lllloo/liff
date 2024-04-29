@@ -11,7 +11,7 @@ const route = useRoute()
 liff
   .init({
     liffId: LIFF_ID,
-    redirectUri: `${window.location.href.replace(/\?liff.state=(?:\/)?/gi, '')}`
+    redirectUri: `${window.location.href}?title=${route?.query?.title}&login=true`
   })
   .then(() => {
     console.log('liff.init() done')
