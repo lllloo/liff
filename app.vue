@@ -33,14 +33,7 @@ const initLiff = () => {
 
 // http://localhost:3000/?liff.state=%3Fpid%3Dwater
 
-const newUrl = decodeURIComponent(window.location.search).replace(
-  /\?liff.state=(?:\/)?/gi,
-  ''
-)
-
-router.replace(newUrl).then(() => {
-  initLiff()
-})
+initLiff()
 
 const sendMessage = () => {
   liff
