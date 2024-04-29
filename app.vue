@@ -19,13 +19,29 @@ liff
   })
   .catch((error) => {
     console.log(`liff.init() failed: ${error}`)
-    if (!process.env.liffId) {
+    if (!LIFF_ID) {
       console.info(
         'LIFF Starter: Please make sure that you provided `LIFF_ID` as an environmental variable.'
       )
     }
     return Promise.reject(error)
   })
+
+const sendMessage = () => {
+  liff
+    .sendMessages([
+      {
+        type: 'text',
+        text: `Hello, World! ${decodedIDToken.name}`
+      }
+    ])
+    .then(() => {
+      console.log('message sent')
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+}
 </script>
 <template>
   <div class="w-full h-full flex flex-col">
@@ -39,7 +55,10 @@ liff
     </div>
     <div class="flex justify-between p-2 bg-gray-100">
       <div></div>
-      <button class="rounded bg-primary px-2 py-1 font-semibold text-white">
+      <button
+        class="rounded bg-primary px-2 py-1 font-semibold text-white"
+        @click="sendMessage"
+      >
         Button
       </button>
     </div>
