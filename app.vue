@@ -7,31 +7,41 @@ const decodedIDToken = reactive({
   name: ''
 })
 const route = useRoute()
+const router = useRouter()
 
-const pid = useCookie('pid')
-if (route.query?.pid) {
-  pid.value = route.query?.pid
+const initLiff = () => {
+  liff
+    .init({
+      liffId: LIFF_ID
+    })
+    .then(() => {
+      console.log('liff.init() done')
+
+      const idToken = liff.getDecodedIDToken()
+      decodedIDToken.name = idToken?.name || undefined
+    })
+    .catch((error) => {
+      console.log(`liff.init() failed: ${error}`)
+      if (!LIFF_ID) {
+        console.info(
+          'LIFF Starter: Please make sure that you provided `LIFF_ID` as an environmental variable.'
+        )
+      }
+      return Promise.reject(error)
+    })
 }
 
-liff
-  .init({
-    liffId: LIFF_ID
-  })
-  .then(() => {
-    console.log('liff.init() done')
+// http://localhost:3000/?liff.state=%3Fpid%3Dwater
 
-    const idToken = liff.getDecodedIDToken()
-    decodedIDToken.name = idToken?.name || undefined
-  })
-  .catch((error) => {
-    console.log(`liff.init() failed: ${error}`)
-    if (!LIFF_ID) {
-      console.info(
-        'LIFF Starter: Please make sure that you provided `LIFF_ID` as an environmental variable.'
-      )
-    }
-    return Promise.reject(error)
-  })
+const newUrl =
+  decodeURIComponent(window.location.search).replace(
+    /\?liff.state=(?:\/)?/gi,
+    ''
+  ) + route.hash
+
+router.replace(newUrl).then(() => {
+  initLiff()
+})
 
 const sendMessage = () => {
   liff
@@ -58,9 +68,7 @@ const sendMessage = () => {
       <div class="mb-2">
         {{ route.query }}
       </div>
-      <div>
-        cookie - {{ pid }}
-      </div>
+      <div>cookie - {{ pid }}</div>
       <NuxtLink to="/" class="mr-2"> index </NuxtLink>
       <NuxtLink to="/list"> list </NuxtLink>
       <NuxtLayout>
