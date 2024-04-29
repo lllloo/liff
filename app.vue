@@ -9,7 +9,8 @@ const decodedIDToken = reactive({
 
 liff
   .init({
-    liffId: LIFF_ID
+    liffId: LIFF_ID,
+    withLoginOnExternalBrowser: true
   })
   .then(() => {
     console.log('liff.init() done')
@@ -32,11 +33,13 @@ const sendMessage = () => {
     .sendMessages([
       {
         type: 'text',
-        text: `Hello, World! ${decodedIDToken.name}`
+        text: `${decodedIDToken.name}! 上車`
       }
     ])
     .then(() => {
-      console.log('message sent')
+      if (liff.isInClient()) {
+        liff.closeWindow()
+      }
     })
     .catch((error) => {
       console.error(error)
@@ -59,7 +62,7 @@ const sendMessage = () => {
         class="rounded bg-primary px-2 py-1 font-semibold text-white"
         @click="sendMessage"
       >
-        Button
+        上車
       </button>
     </div>
   </div>
