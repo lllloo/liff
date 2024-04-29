@@ -9,8 +9,7 @@ const decodedIDToken = reactive({
 
 liff
   .init({
-    liffId: LIFF_ID,
-    withLoginOnExternalBrowser: true
+    liffId: LIFF_ID
   })
   .then(() => {
     console.log('liff.init() done')
@@ -45,6 +44,14 @@ const sendMessage = () => {
       console.error(error)
     })
 }
+
+const route = useRoute()
+if (route?.query?.title) {
+  useHead({
+    title: route.query.title
+  })
+}
+
 </script>
 <template>
   <div class="w-full h-full flex flex-col">
