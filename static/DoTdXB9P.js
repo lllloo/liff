@@ -1,0 +1,1 @@
+import{_ as n}from"./DlAUqK2U.js";import{c as e,a as t,F as a,q as l,o as s,t as o}from"./C-kni6dR.js";const c={},i=t("h1",{class:"text-[24px]"},"List",-1);function _(u,d){return s(),e("div",null,[i,t("ul",null,[(s(),e(a,null,l(100,r=>t("li",null,o(r),1)),64))])])}const p=n(c,[["render",_]]);export{p as default};

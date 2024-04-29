@@ -1,0 +1,1 @@
+import{u as o,n as s,c as a,a as c,t as n,o as r}from"./C-kni6dR.js";const p={class:"text-[20px]"},i={__name:"[id]",setup(u){const e=o();console.log(e);const t=s(()=>decodeURIComponent(e.path.replace("/","")));return(l,_)=>(r(),a("div",null,[c("h1",p," 商品: "+n(t.value),1)]))}};export{i as default};

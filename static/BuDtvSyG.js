@@ -1,1 +1,0 @@
-import{u as t,c as s,a,t as o,n as c,o as n}from"./CqCGjm0p.js";const r={class:"text-[20px]"},i={__name:"[id]",setup(l){const e=t();return console.log(e),(p,u)=>(n(),s("div",null,[a("h1",r," 商品 "+o(c(e).path.replace("/","")),1)]))}};export{i as default};
