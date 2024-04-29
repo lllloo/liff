@@ -6,10 +6,12 @@ const LIFF_ID = config.public.LIFF_ID
 const decodedIDToken = reactive({
   name: ''
 })
+const route = useRoute()
 
 liff
   .init({
-    liffId: LIFF_ID
+    liffId: LIFF_ID,
+    redirectUri: `${window.location.href}`
   })
   .then(() => {
     console.log('liff.init() done')
@@ -45,13 +47,11 @@ const sendMessage = () => {
     })
 }
 
-const route = useRoute()
 if (route?.query?.title) {
   useHead({
     title: route.query.title
   })
 }
-
 </script>
 <template>
   <div class="w-full h-full flex flex-col">
