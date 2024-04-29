@@ -33,11 +33,10 @@ const initLiff = () => {
 
 // http://localhost:3000/?liff.state=%3Fpid%3Dwater
 
-const newUrl =
-  decodeURIComponent(window.location.search).replace(
-    /\?liff.state=(?:\/)?/gi,
-    ''
-  ) + route.hash
+const newUrl = decodeURIComponent(window.location.search).replace(
+  /\?liff.state=(?:\/)?/gi,
+  ''
+)
 
 router.replace(newUrl).then(() => {
   initLiff()
@@ -68,7 +67,6 @@ const sendMessage = () => {
       <div class="mb-2">
         {{ route.query }}
       </div>
-      <div>cookie - {{ pid }}</div>
       <NuxtLink to="/" class="mr-2"> index </NuxtLink>
       <NuxtLink to="/list"> list </NuxtLink>
       <NuxtLayout>
