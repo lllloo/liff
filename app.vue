@@ -12,27 +12,25 @@ const route = useRoute()
 // http://localhost:3000/?liff.state=%3Fp_id%3D123
 // http://localhost:3000/?liff.state=%3Fkey%3Dvalue
 
+liff
+  .init({
+    liffId: LIFF_ID
+  })
+  .then(() => {
+    console.log('liff.init() done')
 
-
-// liff
-//   .init({
-//     liffId: LIFF_ID
-//   })
-//   .then(() => {
-//     console.log('liff.init() done')
-
-//     const idToken = liff.getDecodedIDToken()
-//     decodedIDToken.name = idToken?.name || undefined
-//   })
-//   .catch((error) => {
-//     console.log(`liff.init() failed: ${error}`)
-//     if (!LIFF_ID) {
-//       console.info(
-//         'LIFF Starter: Please make sure that you provided `LIFF_ID` as an environmental variable.'
-//       )
-//     }
-//     return Promise.reject(error)
-//   })
+    const idToken = liff.getDecodedIDToken()
+    decodedIDToken.name = idToken?.name || undefined
+  })
+  .catch((error) => {
+    console.log(`liff.init() failed: ${error}`)
+    if (!LIFF_ID) {
+      console.info(
+        'LIFF Starter: Please make sure that you provided `LIFF_ID` as an environmental variable.'
+      )
+    }
+    return Promise.reject(error)
+  })
 </script>
 <template>
   <div class="w-full h-full flex flex-col">
