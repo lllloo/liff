@@ -9,6 +9,10 @@ const decodedIDToken = reactive({
 const route = useRoute()
 
 // http://localhost:3000/?liff.state=%3Fpid%3Dwater
+// http://localhost:3000/?liff.state=%3Fp_id%3D123
+// http://localhost:3000/?liff.state=%3Fkey%3Dvalue
+
+
 
 liff
   .init({
