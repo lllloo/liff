@@ -4,7 +4,8 @@ const config = useRuntimeConfig()
 const LIFF_ID = config.public.LIFF_ID
 
 const decodedIDToken = reactive({
-  name: ''
+  name: '',
+  sub: ''
 })
 const route = useRoute()
 
@@ -18,9 +19,11 @@ liff
   })
   .then(() => {
     console.log('liff.init() done')
-
-    const idToken = liff.getDecodedIDToken()
-    decodedIDToken.name = idToken?.name || undefined
+    if (liff.isLoggedIn()) {
+      const idToken = liff.getDecodedIDToken()
+      decodedIDToken.name = idToken?.name || undefined
+      decodedIDToken.sub = idToken?.sub || undefined
+    }
   })
   .catch((error) => {
     console.log(`liff.init() failed: ${error}`)
@@ -35,7 +38,7 @@ liff
 <template>
   <div class="w-full h-full flex flex-col">
     <div class="flex-1 overflow-auto">
-      <div>Liff - {{ decodedIDToken.name }}</div>
+      <div>Liff - {{ decodedIDToken.name }} - {{ decodedIDToken.sub }}</div>
       <div class="mb-2">
         {{ route.query }}
       </div>
