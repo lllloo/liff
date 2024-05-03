@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
   app: {
-    baseURL: process.env.NODE_ENV === 'production' ? '/liff/' : '/',
+    baseURL: process.env.NODE_ENV === 'production' ? '/liff-next/' : '/',
     buildAssetsDir: '/static/',
     head: {
       title: 'LIFF App',
