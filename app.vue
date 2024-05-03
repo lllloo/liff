@@ -15,7 +15,8 @@ const route = useRoute()
 
 liff
   .init({
-    liffId: LIFF_ID
+    liffId: LIFF_ID,
+    withLoginOnExternalBrowser: true
   })
   .then(() => {
     console.log('liff.init() done')
