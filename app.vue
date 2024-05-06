@@ -19,10 +19,10 @@ liff
     withLoginOnExternalBrowser: true
   })
   .then(() => {
-    const data = liff.getProfile()
-    console.log('data', data);
-    profile.userId = data?.userId || undefined
-    profile.name = data?.name || undefined
+    liff.getProfile().then((data) => {
+      profile.userId = data?.userId || undefined
+      profile.name = data?.displayName || undefined
+    })
   })
   .catch((error) => {
     console.log(`liff.init() failed: ${error}`)
