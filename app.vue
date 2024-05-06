@@ -3,9 +3,9 @@ import liff from '@line/liff'
 const config = useRuntimeConfig()
 const LIFF_ID = config.public.LIFF_ID
 
-const decodedIDToken = reactive({
+const profile = reactive({
+  userId: '',
   name: '',
-  sub: ''
 })
 const route = useRoute()
 
@@ -21,9 +21,9 @@ liff
   .then(() => {
     console.log('liff.init() done')
     if (liff.isLoggedIn()) {
-      const idToken = liff.getDecodedIDToken()
-      decodedIDToken.name = idToken?.name || undefined
-      decodedIDToken.sub = idToken?.sub || undefined
+      const data = liff.getProfile()
+      profile.userId = data?.userId || undefined
+      profile.name = data?.name || undefined
     }
   })
   .catch((error) => {
@@ -39,7 +39,7 @@ liff
 <template>
   <div class="w-full h-full flex flex-col">
     <div class="flex-1 overflow-auto">
-      <div>Liff - {{ decodedIDToken.name }} - {{ decodedIDToken.sub }}</div>
+      <div>Liff - {{ profile.userId }} - {{ profile.name }}</div>
       <div class="mb-2">
         {{ route.query }}
       </div>
