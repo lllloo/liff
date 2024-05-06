@@ -5,7 +5,7 @@ const LIFF_ID = config.public.LIFF_ID
 
 const profile = reactive({
   userId: '',
-  name: '',
+  name: ''
 })
 const route = useRoute()
 
@@ -19,12 +19,10 @@ liff
     withLoginOnExternalBrowser: true
   })
   .then(() => {
-    console.log('liff.init() done')
-    if (liff.isLoggedIn()) {
-      const data = liff.getProfile()
-      profile.userId = data?.userId || undefined
-      profile.name = data?.name || undefined
-    }
+    const data = liff.getProfile()
+    console.log('data', data);
+    profile.userId = data?.userId || undefined
+    profile.name = data?.name || undefined
   })
   .catch((error) => {
     console.log(`liff.init() failed: ${error}`)
