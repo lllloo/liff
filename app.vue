@@ -9,23 +9,21 @@ const profile = reactive({
 })
 const route = useRoute()
 
-// http://localhost:3000/?liff.state=%3Fpid%3Dwater
-// http://localhost:3000/?liff.state=%3Fp_id%3D123
-// http://localhost:3000/?liff.state=%3Fkey%3Dvalue
-
 liff
   .init({
-    liffId: LIFF_ID,
-    withLoginOnExternalBrowser: true
+    liffId: LIFF_ID
   })
   .then(() => {
-    liff.getProfile().then((data) => {
-      profile.userId = data?.userId || undefined
-      profile.name = data?.displayName || undefined
-    })
+    console.log('line - init')
+    if (liff.isLoggedIn()) {
+      liff.getProfile().then((data) => {
+        console.log('line - profile', data)
+      })
+    } else {
+      console.log('未登入')
+    }
   })
   .catch((error) => {
-    console.log(`liff.init() failed: ${error}`)
     if (!LIFF_ID) {
       console.info(
         'LIFF Starter: Please make sure that you provided `LIFF_ID` as an environmental variable.'
