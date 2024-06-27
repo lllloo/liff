@@ -31,11 +31,18 @@ liff
     }
     return Promise.reject(error)
   })
+
+  const search = ref(window.location.search)
+  const getParams = (url) => {
+    return Object.fromEntries(new URLSearchParams(url).entries())
+  }
+  const searchParams = getParams(search.value)
+
 </script>
 <template>
   <div class="w-full h-full flex flex-col">
     <div class="flex-1 overflow-auto">
-      <div>Liff - {{ profile.userId }} - {{ profile.name }}</div>
+      <div>Liff - {{ searchParams }}</div>
       <div class="mb-2">
         {{ route.query }}
       </div>
