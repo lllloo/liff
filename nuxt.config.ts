@@ -28,5 +28,12 @@ export default defineNuxtConfig({
       LIFF_ID: process.env.LIFF_ID
     }
   },
-  modules: ['@nuxtjs/tailwindcss']
+  modules: ['@nuxtjs/tailwindcss'],
+  experimental: {
+    defaults: {
+      nuxtLink: {
+        trailingSlash: 'remove'
+      }
+    }
+  }
 })
