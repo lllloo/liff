@@ -29,11 +29,4 @@ export default defineNuxtConfig({
     }
   },
   modules: ['@nuxtjs/tailwindcss'],
-  experimental: {
-    defaults: {
-      nuxtLink: {
-        trailingSlash: 'remove'
-      }
-    }
-  }
 })
