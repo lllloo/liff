@@ -1,0 +1,1 @@
+import{_ as r}from"./DlAUqK2U.js";import{c as e,a as t,F as a,n as l,o as s,t as o}from"./D-2RcLmR.js";const c={},i=t("h1",{class:"text-[24px]"},"List",-1);function _(u,d){return s(),e("div",null,[i,t("ul",null,[(s(),e(a,null,l(100,n=>t("li",null,o(n),1)),64))])])}const p=r(c,[["render",_]]);export{p as default};
