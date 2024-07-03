@@ -9,6 +9,8 @@ const profile = reactive({
 })
 const route = useRoute()
 
+const { $signInWithCustomToken } = useNuxtApp()
+
 liff
   .init({
     liffId: LIFF_ID
@@ -18,6 +20,13 @@ liff
     if (liff.isLoggedIn()) {
       liff.getProfile().then((data) => {
         console.log('line - profile', data)
+        $signInWithCustomToken(data.userId)
+          .then((res) => {
+            console.log('line in', res)
+          })
+          .catch((err) => {
+            console.log('line not in', err)
+          })
       })
     } else {
       console.log('未登入')
@@ -32,11 +41,11 @@ liff
     return Promise.reject(error)
   })
 
-  const search = ref(window.location.search)
-  const getParams = (url) => {
-    return Object.fromEntries(new URLSearchParams(url).entries())
-  }
-  const searchParams = getParams(search.value)
+const search = ref(window.location.search)
+const getParams = (url) => {
+  return Object.fromEntries(new URLSearchParams(url).entries())
+}
+const searchParams = getParams(search.value)
 
 </script>
 <template>
