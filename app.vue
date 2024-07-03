@@ -1,7 +1,6 @@
 <script setup>
 import liff from '@line/liff'
 const config = useRuntimeConfig()
-const LIFF_ID = config.public.LIFF_ID
 
 const profile = reactive({
   userId: '',
@@ -13,7 +12,7 @@ const { $signInWithCustomToken } = useNuxtApp()
 
 liff
   .init({
-    liffId: LIFF_ID
+    liffId: '2005759309-ABpxXY7J',
   })
   .then(() => {
     console.log('line - init')
@@ -31,14 +30,6 @@ liff
     } else {
       console.log('未登入')
     }
-  })
-  .catch((error) => {
-    if (!LIFF_ID) {
-      console.info(
-        'LIFF Starter: Please make sure that you provided `LIFF_ID` as an environmental variable.'
-      )
-    }
-    return Promise.reject(error)
   })
 
 const search = ref(window.location.search)
