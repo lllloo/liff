@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithCustomToken } from "firebase/auth";
+import { getAuth, signInWithPopup, signInWithCredential, OAuthProvider } from "firebase/auth";
 
 export default defineNuxtPlugin(nuxtApp => {
   const firebaseConfig = {
@@ -15,8 +15,42 @@ export default defineNuxtPlugin(nuxtApp => {
 
 
   const auth = getAuth();
-  nuxtApp.provide('signInWithCustomToken', (token) => {
-    return signInWithCustomToken(auth, token)
+
+  nuxtApp.provide('signInWithCredential', (token) => {
+
+    const provider = new OAuthProvider('oidc.line');
+    const credential = provider.credential({
+      idToken: token,
+    });
+
+    return signInWithCredential(auth, credential)
+      .then((result) => {
+        const credential = OAuthProvider.credentialFromResult(result);
+        const accessToken = credential.accessToken;
+        const idToken = credential.idToken;
+        console.log('result', result)
+      })
+      .catch((error) => {
+        console.log('error', error)
+      });
+  });
+
+
+
+  nuxtApp.provide('signInWithPopup', () => {
+
+    const provider = new OAuthProvider('oidc.line');
+
+    return signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = OAuthProvider.credentialFromResult(result);
+        const accessToken = credential.accessToken;
+        const idToken = credential.idToken;
+        console.log('result', result)
+      })
+      .catch((error) => {
+        console.log('error', error)
+      });
   });
 
 })
