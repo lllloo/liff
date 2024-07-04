@@ -18,17 +18,19 @@ liff
   .then(() => {
     console.log('line - init')
     if (liff.isLoggedIn()) {
-      liff.getProfile().then((data) => {
-        console.log('line - profile', data)
-        $signInWithPopup()
-        // $signInWithCredential(data.userId)
-        //   .then((res) => {
-        //     console.log('line in', res)
-        //   })
-        //   .catch((err) => {
-        //     console.log('line not in', err)
-        //   })
-      })
+      // liff.getProfile().then((data) => {
+      //   console.log('line - profile', data)
+      //   $signInWithPopup()
+      // })
+
+      const idToken = liff.getIDToken()
+      $signInWithCredential(idToken)
+        .then((res) => {
+          console.log('line in', res)
+        })
+        .catch((err) => {
+          console.log('line not in', err)
+        })
     } else {
       console.log('未登入')
     }
