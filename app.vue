@@ -20,7 +20,6 @@ liff
     if (liff.isLoggedIn()) {
       // liff.getProfile().then((data) => {
       //   console.log('line - profile', data)
-      //   $signInWithPopup()
       // })
 
       const idToken = liff.getIDToken()

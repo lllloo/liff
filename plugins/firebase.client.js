@@ -12,17 +12,14 @@ export default defineNuxtPlugin(nuxtApp => {
   };
 
   const app = initializeApp(firebaseConfig);
-
-
   const auth = getAuth();
 
+  // 透過 idToken 登入
   nuxtApp.provide('signInWithCredential', (token) => {
-
     const provider = new OAuthProvider('oidc.line');
     const credential = provider.credential({
       idToken: token,
     });
-
     return signInWithCredential(auth, credential)
       .then((result) => {
         const credential = OAuthProvider.credentialFromResult(result);
@@ -35,12 +32,9 @@ export default defineNuxtPlugin(nuxtApp => {
       });
   });
 
-
-
+  // 快速登入彈跳視窗
   nuxtApp.provide('signInWithPopup', () => {
-
     const provider = new OAuthProvider('oidc.line');
-
     return signInWithPopup(auth, provider)
       .then((result) => {
         const credential = OAuthProvider.credentialFromResult(result);
@@ -52,5 +46,4 @@ export default defineNuxtPlugin(nuxtApp => {
         console.log('error', error)
       });
   });
-
 })
