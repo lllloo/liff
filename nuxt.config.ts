@@ -1,7 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  ssr: false,
   app: {
     baseURL: process.env.NODE_ENV === 'production' ? '/liff/' : '/',
     buildAssetsDir: '/static/',
@@ -24,4 +23,17 @@ export default defineNuxtConfig({
     }
   },
   modules: ['@nuxtjs/tailwindcss'],
+  runtimeConfig: {
+    public: {
+      liffId: '2005759309-ABpxXY7J',
+      firebaseConfig: {
+        apiKey: "AIzaSyAENKWqthl7gaH77ZLZvornlbl7MW-7E94",
+        authDomain: "base-300-78d54.firebaseapp.com",
+        projectId: "base-300-78d54",
+        storageBucket: "base-300-78d54.appspot.com",
+        messagingSenderId: "234726660768",
+        appId: "1:234726660768:web:acb35674412372b31607c5"
+      }
+    }
+  }
 })

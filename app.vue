@@ -1,41 +1,14 @@
 <script setup>
-import liff from '@line/liff'
-const config = useRuntimeConfig()
-
 const profile = reactive({
   userId: '',
   name: ''
 })
 const route = useRoute()
 
-const { $signInWithPopup, $signInWithCredential } = useNuxtApp()
+console.log('client', import.meta.client)
+console.log('server', import.meta.server)
 
-liff
-  .init({
-    liffId: '2005759309-ABpxXY7J',
-    withLoginOnExternalBrowser: true
-  })
-  .then(() => {
-    console.log('line - init')
-    if (liff.isLoggedIn()) {
-      // liff.getProfile().then((data) => {
-      //   console.log('line - profile', data)
-      // })
-
-      const idToken = liff.getIDToken()
-      $signInWithCredential(idToken)
-        .then((res) => {
-          console.log('line in', res)
-        })
-        .catch((err) => {
-          console.log('line not in', err)
-        })
-    } else {
-      console.log('未登入')
-    }
-  })
-
-const search = ref(window.location.search)
+const search = ref(import.meta.client ? window.location.search : '')
 const getParams = (url) => {
   return Object.fromEntries(new URLSearchParams(url).entries())
 }
